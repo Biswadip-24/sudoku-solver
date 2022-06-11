@@ -29,7 +29,9 @@ class HomePage extends StatelessWidget {
                 top: 16,
                 bottom: MediaQuery.of(ctx).viewInsets.bottom,
               ),
-              child: ChooseDifficulty(difficulty: sudokuData.difficulty,),
+              child: ChooseDifficulty(
+                difficulty: sudokuData.difficulty,
+              ),
             ),
           ),
         );
@@ -116,30 +118,32 @@ class HomePage extends StatelessWidget {
               child: InputKeys(),
             ),
             if (sudokuData.isComplete())
-              Container(
-                margin:
-                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'The sudoku has been solved completely!',
-                      style: GoogleFonts.poppins(
-                        fontSize: 16,
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Provider.of<SudokuGrid>(context, listen: false)
-                            .init(reset: true);
-                      },
-                      child: Text(
-                        'RESET',
+              Expanded(
+                child: Container(
+                  margin: const EdgeInsets.symmetric(
+                      horizontal: 16.0, vertical: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'The sudoku has been solved completely!',
                         style: GoogleFonts.poppins(
-                            fontSize: 20, fontWeight: FontWeight.w500),
+                          fontSize: 16,
+                        ),
                       ),
-                    ),
-                  ],
+                      TextButton(
+                        onPressed: () {
+                          Provider.of<SudokuGrid>(context, listen: false)
+                              .init(reset: true);
+                        },
+                        child: Text(
+                          'RESET',
+                          style: GoogleFonts.poppins(
+                              fontSize: 20, fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               )
           ],
